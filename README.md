@@ -10,3 +10,9 @@ Display all dailies by type: pve, pvp & mcm
 ## Détail d'un daily
 (https://api.guildwars2.com/v2/achievements?id=1969)
 
+#Commit et push
+git init
+git add . 
+git commit -m "message"
+git push -u origin master
+

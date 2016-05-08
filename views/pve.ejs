@@ -11,10 +11,11 @@
     <body>
         <h1>PVE</h1>
         <p></p><%= names %></p>
+        <p></p><%= ids %></p>
         <ul>
             <li>début</li>
-        <% names.forEach(function(p, index) { %>
-            <li><%= index %> <%= p %></li>
+        <% ids.forEach(function(p, index) { %>
+            <li><%= index %>. <%= p.id %></li>
         <% }); %>
             <li>fin</li>
         </ul>
