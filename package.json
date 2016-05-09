@@ -1,6 +1,6 @@
 {
   "name": "gw2",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "gw2 achievments",
   "main": "web.js",
   "scripts": {
@@ -10,15 +10,14 @@
     "js-md5": "^0.3.0",
     "promise": "^7.0.4",
     "request": "^2.69.0",
-    "sleep": "^3.0.1",
     "underscore": "^1.8.3",
     "express": "~4.11.0",
     "ejs": "~2.1.4",
     "body-parser": "~1.10.1",
-    "jquery": "2.2.0",
-    "q": "1.4.1",
-    "bluebird": "~3.0.0"
+    "bluebird": "~3.0.0",
+    "request-promise": "3.0.0"
+    
   },
-  "author": "Gwendoline",
+  "author": "Gwendoline <gwendoline.mey@gmail.com>",
   "license": "ISC"
 }

@@ -4,23 +4,17 @@
     <head>
         <title>PVE Dailies</title>
         <style>
-            a {text-decoration: none; color: black;}
+            
         </style>
     </head>
 
     <body>
         <h1>PVE</h1>
-        <p></p><%= names %></p>
-        <p></p><%= ids %></p>
+        
         <ul>
-            <li>début</li>
-        <% ids.forEach(function(p, index) { %>
-            <li><%= index %>. <%= p.id %></li>
-        <% }); %>
-            <li>fin</li>
+            <% names.forEach(function(p, index) { %>
+                <li> <%= p %></li>
+            <% }); %>
         </ul>
-
-        
-        
     </body>
 </html>

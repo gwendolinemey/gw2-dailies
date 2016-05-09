@@ -1,16 +1,9 @@
 
 var express = require('express');
 var bodyParser = require('body-parser'); // Charge le middleware de gestion des paramètres
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var request = require("request");
-var url = require("url");
-//var $ = require("jquery");
-// var promise = require('promise');
 var app = express();
-//http://stackoverflow.com/questions/35030676/looping-promises-in-nodejs
-var Q = require('q'); 
-// var promise = Q.when('test');
-var Promise = require("bluebird");
+var rp = require('request-promise');
 
 // create a server
 //http.createServer(function(req, res) {
@@ -25,28 +18,58 @@ app.get('/', function(req, res) {
       
       //init tab, will contain dailies title
       var pveNames = [];
+      
+      
+      pveIds.forEach(function(item){
+        console.log("item : "+item.id);
+            rp({url:'https://api.guildwars2.com/v2/achievements?id='+item.id, json: true},
+            function (error, response, body) {
+              if (!error && response.statusCode == 200) {
+                //charger le tableau PveNames
+                console.log("body name: "+body.name);
+                pveNames.push(body.name);
+              }
+            }).then(function(success){
+                console.log("done");
+                console.log("names tab:" + pveNames);
+                res.render('pve.ejs', {
+                  names: pveNames, ids: pveIds
+                });
+            }).catch(function (err) {
+              console.log("catch "+err);
+            });
+          })
+      
+    
+      
+      
+      
+      
+      
+      
+      
         
-      Promise.map(pveIds, function(pveId) {
-        // Promise.map awaits for returned promises as well.
-        request.get({
-            url: 'https://api.guildwars2.com/v2/achievements?id=' + pveId.id,
-            json: true
-          },
-          function(error, response, body) {
-            console.log('log 1: ' + body.name);
-            if (response.statusCode == 200) {
-              return body.name;
-            }
+      // Promise.map(pveIds, function(pveId) {
+      //   // Promise.map awaits for returned promises as well.
+      //   request.get({
+      //       url: 'https://api.guildwars2.com/v2/achievements?id=' + pveId.id,
+      //       json: true
+      //     },
+      //     function(error, response, body) {
+      //       console.log('log 1: ' + body.name);
+      //       if (response.statusCode == 200) {
+      //         return body.name;
+      //       }
           
-        });
-      }).done(function(results) {
-        console.log("done");
-        console.log(results);
-        console.log("names tab:" + pveNames);
-        res.render('pve.ejs', {
-          names: pveNames, ids: pveIds
-        });
-      });
+      //   });
+      // }).done(function(results) {
+      //   console.log("done");
+      //   console.log(results);
+      //   console.log("names tab:" + pveNames);
+      //   res.render('pve.ejs', {
+      //     names: pveNames, ids: pveIds
+      //   });
+      // });
     
       // (function(){
       //   for(var i=0;i<pveIds.length;i++){
